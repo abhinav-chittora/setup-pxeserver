@@ -1,0 +1,36 @@
+---
+# tasks file for tftpserver
+#
+
+- name: Install TFTP Server & Configure
+  
+  block: 
+
+  - name: Install tftpd-hpa package
+    apt:
+      update_cache: yes
+      name: tftpd-hpa
+      state: latest
+
+  - name: copy tftp configuration file
+    template:
+      src: tftpd-hpa.j2
+      dest: /etc/default/tftpd-hpa
+      owner: root
+      group: root
+      mode: 0644
+    notify: restart tftp
+
+  - name: Ensure TFTP service is running
+    systemd:
+      name: tftpd-hpa.service
+      state: started
+      enabled: true
+
+  - name: Ensure ufw is disabled
+    ufw:
+      state: disabled
+    
+  when: ansible_distribution == "Ubuntu" 
+  become: true
+  become_user: root

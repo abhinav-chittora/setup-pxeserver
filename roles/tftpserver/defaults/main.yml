@@ -1,0 +1,8 @@
+---
+# defaults file for tftpserver
+#
+tftp_username: tftp
+tftp_root_directory: "/var/lib/tftpboot"
+tftp_port: 69
+tftp_options: "--secure"
+tftp_daemon: "yes"
