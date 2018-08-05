@@ -1,2 +1,22 @@
 ---
 # tasks file for apacheserver
+#
+- name: Setting up Apache Server to serve Ubuntu Image
+  block:
+
+  - name: Installing required packages
+    apt:
+      name: apache2
+      state: latest
+      update_cache: true
+
+  - name: Ensuring service is running
+    systemd: 
+      name: apache2.service
+      state: started
+      daemon_reload: true
+        
+
+  become: true
+  become_user: root
+  when: ansible_distribution == "Ubuntu"

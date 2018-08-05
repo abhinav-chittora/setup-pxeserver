@@ -1,0 +1,24 @@
+option domain-name "{{ dhcp_domain_name }}";
+option domain-name-servers {{ dhcp_dns_server }};
+
+default-lease-time {{ dhcp_lease_time }};
+max-lease-time {{ dhcp_max_lease_time }};
+
+ddns-update-style none;
+
+
+subnet {{ dhcp_network_id }} netmask {{ dhcp_subnet_netmask }} {
+  range {{ dhcp_subnet_start_ip }} {{ dhcp_subnet_end_ip }};
+  option broadcast-address {{ dhcp_subnet_broadcat_ip }};
+  option domain-name-servers {{ dhcp_dns_server }};
+  option domain-name "{{ dhcp_domain_name }}";
+  option routers {{ dhcp_subnet_gateway }};
+  default-lease-time {{ dhcp_max_lease_time }};
+}
+
+allow booting; 
+allow bootp;
+option option-128 code 128 = string; 
+option option-129 code 129 = text;
+next-server {{ ansible_host }};
+filename "pxelinux.0";

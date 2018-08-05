@@ -1,2 +1,9 @@
 ---
 # handlers file for dhcpserver
+
+- name: restart dhcpd
+  systemd:
+    name: isc-dhcp-server.service
+    state: restarted
+  become: true
+

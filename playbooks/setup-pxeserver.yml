@@ -6,4 +6,8 @@
 
   roles:
     - tftpserver
+    - dhcpserver
+    - apacheserver
+    - pxeserver
+
 

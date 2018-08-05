@@ -28,8 +28,10 @@
       enabled: true
 
   - name: Ensure ufw is disabled
-    ufw:
-      state: disabled
+    systemd:
+      name: ufw.service
+      state: stopped
+      enabled: false
     
   when: ansible_distribution == "Ubuntu" 
   become: true

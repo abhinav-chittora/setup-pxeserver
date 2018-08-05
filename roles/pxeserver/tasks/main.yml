@@ -1,2 +1,36 @@
 ---
 # tasks file for pxeserver
+
+- name: setting up PXE server to boot Ubuntu 16.04
+  block:
+  
+  - name: Download netboot in tftp folder
+    get_url:
+      url: http://archive.ubuntu.com/ubuntu/dists/{{ ubuntu_version_name }}/main/installer-amd64/current/images/netboot/netboot.tar.gz
+      dest: /var/lib/tftpboot
+      owner: root
+      group: root
+      mode: 0644
+
+
+  - name: Unarchive the download netboot tar
+    unarchive:
+      src: /var/lib/tftpboot/netboot.tar.gz
+      dest: /var/lib/tftpboot/
+      remote_src: true
+      owner: tftp
+      group: tftp
+      mode: 0777
+
+  - name: Setting up boot option for PXE book
+    template:
+      src: pxelinux.cfg.j2
+      dest: /var/lib/tftpboot/pxelinux.cfg/default
+      owner: tftp
+      group: tftp
+      mode: 0777
+
+
+  become: true
+  become_user: root
+  when: ansible_distribution == "Ubuntu"
