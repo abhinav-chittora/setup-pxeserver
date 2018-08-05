@@ -7,7 +7,7 @@
   - name: Download netboot in tftp folder
     get_url:
       url: http://archive.ubuntu.com/ubuntu/dists/{{ ubuntu_version_name }}/main/installer-amd64/current/images/netboot/netboot.tar.gz
-      dest: /var/lib/tftpboot
+      dest: /var/lib/tftpboot/netboot.tar.gz
       owner: root
       group: root
       mode: 0644
@@ -30,6 +30,17 @@
       group: tftp
       mode: 0777
 
+  - name: Copy ks.cfg file to for installation
+    template:
+      src: ks.cfg.j2
+      dest: /var/www/html/ks.cfg
+      mode: 0655
+      
+  - name: Copy preseed file 
+    template:
+      src: local.seed.j2
+      dest: /var/www/html/local.seed
+      mode: 0655
 
   become: true
   become_user: root
