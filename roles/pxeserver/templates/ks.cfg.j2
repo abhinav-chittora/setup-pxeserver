@@ -38,8 +38,8 @@ install
 #nfs --server=server.com --dir=/path/to/ubuntu/
 #url --url "http://192.168.110.21/ubuntu/"
 #url --url "http://192.168.21.162/ubuntu/"
-url --url "http://archive.ubuntu.com/ubuntu"
-url --url "http://{{ ansible_host }}/ubuntu"
+#url --url "http://archive.ubuntu.com/ubuntu"
+url --url "http://{{ apache_mirror_server }}/ubuntu"
 #url --url ftp://server.com/path/to/ubuntu/
 
 #System bootloader configuration

@@ -5,22 +5,9 @@
   block:
   
   - name: Download netboot in tftp folder
-    get_url:
-      url: http://archive.ubuntu.com/ubuntu/dists/{{ ubuntu_version_name }}/main/installer-amd64/current/images/netboot/netboot.tar.gz
-      dest: /var/lib/tftpboot/netboot.tar.gz
-      owner: root
-      group: root
-      mode: 0644
-
-
-  - name: Unarchive the download netboot tar
-    unarchive:
-      src: /var/lib/tftpboot/netboot.tar.gz
-      dest: /var/lib/tftpboot/
-      remote_src: true
-      owner: tftp
-      group: tftp
-      mode: 0777
+    shell: wget -r -np -nH --cut-dirs=3 -R "index.html*" http://{{ apache_mirror_server }}/ubuntu/install/netboot/
+    args:
+      chdir: /var/lib/tftpboot/
 
   - name: Setting up boot option for PXE book
     template:

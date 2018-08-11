@@ -11,4 +11,4 @@ label Ubuntu-Linux
         menu label ^Install Ubuntu Using PXE
         menu default
         kernel ubuntu-installer/amd64/linux
-        append ks=http://{{ ansible_host }}/ks.cfg url=http://{{ ansible_host }}/local.seed live-installer/net-image=http://{{ ansible_host }}/ubuntu/install/filesystem.squashfs vgs=normal initrd=ubuntu-installer/amd64/initrd.gz ramdisk_size=16432 root=/dev/rd/0 rw --- 
+        append ks=http://{{ apache_mirror_server }}/ks.cfg url=http://{{ apache_mirror_server }}/local.seed live-installer/net-image=http://{{ apache_mirror_server }}/ubuntu/install/filesystem.squashfs vgs=normal initrd=ubuntu-installer/amd64/initrd.gz ramdisk_size=16432 root=/dev/rd/0 rw --- 

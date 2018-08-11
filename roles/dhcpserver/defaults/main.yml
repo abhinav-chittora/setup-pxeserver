@@ -7,13 +7,19 @@ dhcp_dns_server: ns1.example.org
 dhcp_lease_time: 7200
 dhcp_max_lease_time: 72000
 
-dhcp_network_id: 192.168.110.0 
+dhcp_network_id: 192.168.21.0 
 dhcp_subnet_netmask: 255.255.255.0
-dhcp_subnet_start_ip: 192.168.110.60
-dhcp_subnet_end_ip: 192.168.110.70
-dhcp_subnet_broadcat_ip: 192.168.110.255
-dhcp_dns_server: 192.168.110.1
-dhcp_subnet_gateway: 192.168.110.1
+dhcp_subnet_start_ip: 192.168.21.60
+dhcp_subnet_end_ip: 192.168.21.70
+dhcp_subnet_broadcat_ip: 192.168.21.255
+dhcp_dns_server: 192.168.21.1
+dhcp_subnet_gateway: 192.168.21.1
 
 
+host1_name: pxeclient1
+host1_mac_address: 00:00:00:23:34:6a
+host1_ip_address: 192.168.21.61
 
+host2_name: pxeclient1
+host2_mac_address: 00:00:00:23:44:6a
+host2_ip_address: 192.168.21.62

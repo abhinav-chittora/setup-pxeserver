@@ -2,4 +2,5 @@
 # defaults file for pxeserver
 #
 #
-ubuntu_version_name: xenial 
+ubuntu_version_name: bionic
+apache_mirror_server: 192.168.21.163
