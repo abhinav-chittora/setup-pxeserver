@@ -8,7 +8,7 @@ The playbook can be used to setup PXE server completely. Before starting the pla
 **Note:** Few variables are pre-defined but it is advised to change the value based on environment.
 
 - Inventory File: **inventory/hosts**
-  ```yaml
+  ```ini
   [ubuntu]
   ubuntu-kickseed
 
