@@ -15,7 +15,28 @@
       name: apache2.service
       state: started
       daemon_reload: true
+
+  - name: Download Ubuntu ISO from internet 
+    get_url:
+      url: http://releases.ubuntu.com/16.04/ubuntu-16.04.5-server-amd64.iso
+      checksum: "md5:24636fd103a2a43c95659f1c3c63718e"
+      dest: /srv/
+      owner: root
+      group: root
+      mode: 0755
+
+  - name: mount the iso in /mnt 
+    mount:
+      path: /mnt
+      src: /srv/ubuntu-16.04.5-server-amd64.iso
+      opts: loop
+      state: mounted
         
+  - name: Copy content of CD to /var/www/html/ubuntu
+    synchronize:
+      src: /mnt
+      dest: /var/www/html/ubuntu
+    delegate_to: {{ apache_mirror_server }}
 
   become: true
   become_user: root
