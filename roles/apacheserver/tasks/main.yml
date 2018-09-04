@@ -29,6 +29,7 @@
     mount:
       path: /mnt
       src: /srv/ubuntu-16.04.5-server-amd64.iso
+      fstype: iso9660
       opts: loop
       state: mounted
         
@@ -36,7 +37,7 @@
     synchronize:
       src: /mnt
       dest: /var/www/html/ubuntu
-    delegate_to: {{ apache_mirror_server }}
+    delegate_to: "{{ apache_mirror_server }}"
 
   become: true
   become_user: root
